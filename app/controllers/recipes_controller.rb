@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :authorized
 
   def index
     # this commented out method will show all recipes for ONLY the specified category

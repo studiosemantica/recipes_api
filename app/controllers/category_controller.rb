@@ -1,4 +1,5 @@
 class CategoryController < ApplicationController
+  before_action :authorized
 
   # def sample
   #   render :json => {
