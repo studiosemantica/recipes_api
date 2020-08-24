@@ -27,7 +27,7 @@ class CategoryController < ApplicationController
   # make sure to pass the category_params when you create the new category object
   def create
     #here we are creating a new single to do object
-    @new_category = Category.new(category_params)
+    @new_category = Category.new(id: params[:id], title: params[:title], description: :description, created_by: params[:created_by])
 
     if @new_category.save
       render :json => {
@@ -93,5 +93,6 @@ class CategoryController < ApplicationController
   def category_params
     params.permit(:id, :title, :description, :created_by)
   end
+
 end
 
