@@ -16,21 +16,31 @@ ActiveRecord::Schema.define(version: 2020_08_21_025259) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "recipes", force: :cascade do |t|
+    t.string "name"
+    t.string "ingredients"
+    t.text "directions"
+    t.string "notes"
+    t.string "tags"
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_recipes_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.integer "age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "recipes", "categories"
 end
